@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Receta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <header class="d-flex justify-content-between align-items-center">
+            <h1>Bienvenid@, {{user.first_name}}</h1>
+            <a href="/new/recipe" class="btn btn-warning">Agregar Receta</a>
+            <a href="/dashboard" class="btn btn-success">Dashboard</a>
+            <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
+        </header>
+
+        <div class="card mt-5">
+            <div class="card-header">
+                <h3>{{recipe.name}}</h3>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <b>Descripción:</b>&nbsp;&nbsp;{{recipe.description}}
+                </div>
+                <div class="mb-3">
+                    <b>Instrucciones:</b>&nbsp;&nbsp;{{recipe.instructions}}
+                </div>
+                <div class="mb-3">
+                    <b>Fecha de Creación:</b>&nbsp;&nbsp;{{recipe.date_made}}
+                </div>
+                <div class="mb-3">
+                    <b>Menos de 30?: </b>&nbsp;&nbsp;
+                    {% if recipe.under_30 == 0%}
+                        NO
+                    {% else %}
+                        SI
+                    {% endif %}
+                </div>
+
+                <div>
+                    {% if recipe.image is not none %}
+                    <img src="{{ url_for('static', filename='img/'+recipe.image) }}" alt="" class="img-fluid">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="card-footer">
+                Publicado por: {{recipe.first_name}}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
