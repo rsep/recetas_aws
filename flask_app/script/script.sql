@@ -37,11 +37,12 @@ CREATE TABLE IF NOT EXISTS `esquema_recetas`.`recipes` (
   `name` VARCHAR(45) NULL,
   `description` TEXT NULL,
   `instructions` TEXT NULL,
-  `date_made` DATETIME NULL,
+  `date_made` DATE NULL,
   `under_30` TINYINT(1) NULL,
   `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` INT NOT NULL,
+  `image` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_recipes_users_idx` (`user_id` ASC),
   CONSTRAINT `fk_recipes_users`
